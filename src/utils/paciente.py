@@ -1,4 +1,11 @@
-from datetime import datetime
+from datetime import datetime, date
+
+
+class Paciente(Usuario):
+    def __init__(self, idusuario: int, login: str, senha: int, nome_completo: str, email: str, telefone: int, data_cadastro: date, cpf: str, data_nascimento: str):
+        super().__init__(idusuario, login, senha, nome_completo, email, telefone, data_cadastro)
+        self.cpf = cpf
+        self.data_nascimento = data_nascimento
 
 pacientes = []
 
@@ -15,7 +22,13 @@ def validar_data(data_str):
 
 def cadastrar_paciente():
     print("=== Cadastro de Paciente ===")
+    idusuario = len(pacientes) + 1
+    login = input("Login: ")
+    senha = int(input("Senha (apenas números): "))
     nome = input("Nome completo: ")
+    email = input("Email: ")
+    telefone = int(input("Telefone (apenas números): "))
+    data_cadastro = date.today()
     cpf = input("CPF (somente números): ")
     if not validar_cpf(cpf):
         print("CPF inválido.")
@@ -24,11 +37,9 @@ def cadastrar_paciente():
     if not validar_data(data_nascimento):
         print("Data de nascimento inválida.")
         return
-    paciente = {
-        "nome": nome,
-        "cpf": cpf,
-        "data_nascimento": data_nascimento
-    }
+    paciente = Paciente(
+        idusuario, login, senha, nome, email, telefone, data_cadastro, cpf, data_nascimento
+    )
     pacientes.append(paciente)
     print("Paciente cadastrado com sucesso!")
 
@@ -37,7 +48,7 @@ def listar_pacientes():
     if not pacientes:
         print("Nenhum paciente cadastrado.")
     for p in pacientes:
-        print(f"Nome: {p['nome']}, CPF: {p['cpf']}, Data de Nascimento: {p['data_nascimento']}")
+        print(f"ID: {p.idusuario}, Login: {p.login}, Nome: {p.nome_completo}, Email: {p.email}, Telefone: {p.telefone}, Data Cadastro: {p.data_cadastro}, CPF: {p.cpf}, Data de Nascimento: {p.data_nascimento}")
 
 if __name__ == "__main__":
     while True:
