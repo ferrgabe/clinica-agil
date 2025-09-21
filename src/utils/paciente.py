@@ -32,12 +32,26 @@ def cadastrar_paciente():
     pacientes.append(paciente)
     print("Paciente cadastrado com sucesso!")
 
+def listar_pacientes():
+    print("\nPacientes cadastrados:")
+    if not pacientes:
+        print("Nenhum paciente cadastrado.")
+    for p in pacientes:
+        print(f"Nome: {p['nome']}, CPF: {p['cpf']}, Data de Nascimento: {p['data_nascimento']}")
+
 if __name__ == "__main__":
     while True:
-        cadastrar_paciente()
-        cont = input("Deseja cadastrar outro paciente? (s/n): ")
-        if cont.lower() != 's':
+        print("\nMenu:")
+        print("1 - Cadastrar paciente")
+        print("2 - Listar pacientes")
+        print("3 - Sair")
+        opcao = input("Escolha uma opção: ")
+        if opcao == '1':
+            cadastrar_paciente()
+        elif opcao == '2':
+            listar_pacientes()
+        elif opcao == '3':
+            print("Saindo...")
             break
-    print("\nPacientes cadastrados:")
-    for p in pacientes:
-        print(p)
+        else:
+            print("Opção inválida. Tente novamente.")

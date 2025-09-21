@@ -1,6 +1,8 @@
 from datetime import date, datetime
+from typing import List
+from utils.usuario import Usuario
 
-class Funcionario(Usuario):
+class Paciente(Usuario):
     def __init__(
         self,
         idusuario: int,
@@ -10,13 +12,13 @@ class Funcionario(Usuario):
         email: str,
         telefone: int,
         data_cadastro: date,
-        conselho_classe: str,
-        registro_classe: str,
-        cargo: str,
-        ativo: bool,
+        cpf: str,
+        data_nascimento: date,
+        sexo: str,
+        historico_medico: List[str],
     ):
         super().__init__(idusuario, login, senha, nome_completo, email, telefone, data_cadastro)
-        self.conselho_classe = conselho_classe
-        self.registro_classe = registro_classe
-        self.cargo = cargo
-        self.ativo = ativo
+        self.cpf = cpf
+        self.data_nascimento = data_nascimento
+        self.sexo = sexo
+        self.historico_medico = historico_medico
