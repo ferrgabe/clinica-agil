@@ -1,4 +1,5 @@
 from datetime import datetime, date
+from utils.usuario import Usuario
 
 
 class Paciente(Usuario):

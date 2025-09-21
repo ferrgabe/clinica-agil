@@ -32,7 +32,7 @@ class Notificacao:
             print(f"Erro ao enviar email: {response.status_code}")
         return response.status_code
 
-    def disparar_sms(self): # tá funcionando, mas precisa pegar as variáveis de ambiente no .env (usar com cautela, não tem mto crédito)
+    def disparar_sms(self):
         url = f"https://api.twilio.com/2010-04-01/Accounts/{self.account_sid}/Messages.json"
         payload = {
             "To": f"+55{self.paciente.telefone}",

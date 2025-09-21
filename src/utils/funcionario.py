@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from utils.usuario import Usuario
 
 class Funcionario(Usuario):
     def __init__(
