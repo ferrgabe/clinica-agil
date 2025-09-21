@@ -1,4 +1,6 @@
 from datetime import date, datetime
+from utils.usuario import Usuario
+from utils.funcionario import Funcionario
 
 class TecnicoResponsavel(Funcionario):
     def __init__(
