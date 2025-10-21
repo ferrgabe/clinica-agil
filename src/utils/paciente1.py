@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from typing import List
-from utils.usuario import Usuario
+from src.utils.usuario import Usuario
 
 class Paciente(Usuario):
     def __init__(

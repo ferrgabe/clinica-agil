@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from src.utils.funcionario import Funcionario
 
 class Medico(Funcionario):
     def __init__(
