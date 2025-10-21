@@ -1,5 +1,5 @@
 from datetime import datetime, date
-
+from usuario import Usuario
 
 class Paciente(Usuario):
     def __init__(self, idusuario: int, login: str, senha: int, nome_completo: str, email: str, telefone: int, data_cadastro: date, cpf: str, data_nascimento: str):
@@ -20,7 +20,10 @@ def validar_data(data_str):
     except ValueError:
         return False
 
-def cadastrar_paciente():
+def # The `cadastrar_paciente()` function is responsible for registering a new patient in the system.
+# It prompts the user to input various details such as login, password, name, email, phone number,
+# CPF (Brazilian individual taxpayer registry identification), and date of birth.
+cadastrar_paciente():
     print("=== Cadastro de Paciente ===")
     idusuario = len(pacientes) + 1
     login = input("Login: ")
