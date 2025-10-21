@@ -1,7 +1,9 @@
 from datetime import date
 from utils.paciente1 import Paciente
 from utils.notificacao import Notificacao
-
+from utils.MVCLogin.modelLogin import ModelLogin
+from utils.MVCLogin.controllerLogin import ControllerLogin
+from utils.MVCLogin.viewLogin import ViewLogin
 
 def main():
     paciente1 = Paciente(
@@ -30,4 +32,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    model = ModelLogin()
+    controller = ControllerLogin(model)
+    view = ViewLogin(controller)
+
+    print("=== Login MVC ===")
+    view.informarLoginSenha()
