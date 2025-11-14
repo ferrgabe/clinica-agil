@@ -1,6 +1,6 @@
 import requests
 import os
-from utils.paciente1 import Paciente
+from utils.paciente import Paciente
 from dotenv import load_dotenv
 
 # Carrega as variáveis do arquivo .env
@@ -48,3 +48,10 @@ class Notificacao:
             print(f"Erro ao enviar SMS: {response.status_code}, {response.text}")
 
         return response.status_code, response.text
+    
+    # Tive q adicionar o toString pra fazer um debug no resultado_exame
+    def __str__(self):
+        return (f"Notificação ID: {self.id_notificacao} | "
+                f"Tipo: {self.tipo_notificacao} | "
+                f"Mensagem: '{self.mensagem}' | "
+                f"Para: {self.paciente.nome_completo}")

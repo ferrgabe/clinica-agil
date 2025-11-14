@@ -1,0 +1,34 @@
+{
+  "equipamento": "Analyzer X100",
+  "data_coleta": "2025-11-13T10:30:00",
+  "resultados": [
+    {
+      "parametro": "Glicose",
+      "valor": 92,
+      "unidade": "mg/dL",
+      "referencia": "70 - 99",
+      "status": "Normal"
+    },
+    {
+      "parametro": "Colesterol Total",
+      "valor": 205,
+      "unidade": "mg/dL",
+      "referencia": "< 200",
+      "status": "Alto"
+    },
+    {
+      "parametro": "Triglicerídeos",
+      "valor": 130,
+      "unidade": "mg/dL",
+      "referencia": "< 150",
+      "status": "Normal"
+    },
+    {
+      "parametro": "HDL",
+      "valor": 38,
+      "unidade": "mg/dL",
+      "referencia": "> 40",
+      "status": "Baixo"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 from datetime import datetime, date
-
+from utils.usuario import Usuario
 
 class Paciente(Usuario):
     def __init__(self, idusuario: int, login: str, senha: int, nome_completo: str, email: str, telefone: int, data_cadastro: date, cpf: str, data_nascimento: str):

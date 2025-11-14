@@ -1,3 +1,5 @@
+import datetime
+
 class AgendamentoExame:
     def __init__(self, id_agendamento: int, id_exame: int, data_hora: datetime, status: str):
         self.id_agendamento = id_agendamento
