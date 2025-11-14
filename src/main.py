@@ -1,8 +1,5 @@
 import time
 from datetime import date, datetime
-from utils.paciente import Paciente
-from utils.resultado_exame import ResultadoExame
-from utils.exame import Exame
 from utils.importador_json import ImportadorJSON
 from utils.importador_csv import ImportadorCSV
 from utils.factory import EntidadeFactory
