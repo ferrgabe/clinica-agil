@@ -9,13 +9,14 @@ Explicação parte do Roberto Ferreira:
 
 ````python
 importador = ImportadorCSV()
-importador.importar("utils/dados_exame.csv", exame)```
+importador.importar("utils/dados_exame.csv", exame)
+````
 
 
 2. Implementei também o **Factory** no projeto geral, é possível observar que todas as instanciações estão sendo feitas na chamada da função criar_xxxx da classe EntidadeFactory.
 É mais fácil de gerenciar os imports, visto que só preciso importar o factory ao invés de cada classe
 
-```python
+````python
     exame = EntidadeFactory.criar_exame(
         102,
         "Painel Renal",
