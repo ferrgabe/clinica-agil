@@ -10,6 +10,7 @@ class Usuario:
         email: str,
         telefone: int,
         data_cadastro: date,
+        tipo: str
     ):
         self.idusuario = idusuario
         self.login = login
@@ -18,3 +19,4 @@ class Usuario:
         self.email = email
         self.telefone = telefone
         self.data_cadastro = data_cadastro
+        self.tipo = tipo
