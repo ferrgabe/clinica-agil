@@ -21,7 +21,7 @@ def validar_data(data_str):
         return False
 
 
-cadastrar_paciente():
+def cadastrar_paciente():
     print("=== Cadastro de Paciente ===")
     idusuario = len(pacientes) + 1
     login = input("Login: ")
