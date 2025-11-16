@@ -1,5 +1,5 @@
 from datetime import date
-from utils.usuario import Usuario  # reaproveita a classe Usuario do projeto
+from utils.usuario import Usuario
 
 
 class Paciente(Usuario):
@@ -14,6 +14,7 @@ class Paciente(Usuario):
         data_cadastro: date,
         cpf: str,
         data_nascimento: str,
+        tipo: str = "paciente",  # <- parâmetro extra, com valor padrão
     ):
         super().__init__(
             idusuario=idusuario,
@@ -23,7 +24,7 @@ class Paciente(Usuario):
             email=email,
             telefone=telefone,
             data_cadastro=data_cadastro,
-            tipo="paciente",
+            tipo=tipo,
         )
         self.cpf = cpf
         self.data_nascimento = data_nascimento
