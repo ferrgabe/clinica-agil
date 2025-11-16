@@ -1,11 +1,20 @@
 from datetime import date, datetime
+
 from mvcpacientes.models.paciente import Paciente
+from mvcpacientes.models.paciente_factory import PacienteFactory
+from mvcpacientes.controllers.estrategias_listagem_pacientes import (
+    EstrategiaListagemPacientes,
+    ListarPacientesPorNome,
+    ListarPacientesPorDataCadastro,
+)
 
 
 class PacienteController:
     def __init__(self):
-        # Aqui vamos manter os pacientes em memória
+        # Armazena os pacientes em memória
         self._pacientes: list[Paciente] = []
+        # Strategy padrão: listar por nome
+        self._estrategia_listagem: EstrategiaListagemPacientes = ListarPacientesPorNome()
 
     # ---------- Validações (regras de negócio) ----------
 
@@ -37,7 +46,7 @@ class PacienteController:
     ) -> tuple[bool, str]:
         """
         Retorna (sucesso, mensagem).
-        Não usa input()/print(), só regra de negócio.
+        Usa Factory para criar o Paciente.
         """
 
         if not self.validar_cpf(cpf):
@@ -49,20 +58,36 @@ class PacienteController:
         idusuario = self.proximo_id()
         data_cadastro = date.today()
 
-        paciente = Paciente(
-            idusuario=idusuario,
+        paciente = PacienteFactory.criar_paciente(
             login=login,
             senha=senha,
-            nome_completo=nome,
+            nome=nome,
             email=email,
             telefone=telefone,
-            data_cadastro=data_cadastro,
             cpf=cpf,
             data_nascimento=data_nascimento,
+            idusuario=idusuario,
+            data_cadastro=data_cadastro,
         )
+
         self._pacientes.append(paciente)
         return True, "Paciente cadastrado com sucesso!"
 
     def listar_pacientes(self) -> list[Paciente]:
-        # Devolve uma cópia da lista para não deixarem mexer direto
+        """Lista 'crua', sem ordenação especial (mantida por compatibilidade)."""
         return list(self._pacientes)
+
+    # ---------- Strategy: escolha da forma de listagem ----------
+
+    def definir_estrategia_listagem_por_nome(self) -> None:
+        self._estrategia_listagem = ListarPacientesPorNome()
+
+    def definir_estrategia_listagem_por_data_cadastro(self) -> None:
+        self._estrategia_listagem = ListarPacientesPorDataCadastro()
+
+    def listar_pacientes_ordenados(self) -> list[Paciente]:
+        """Aplica a estratégia de listagem configurada."""
+        pacientes = self.listar_pacientes()
+        if not pacientes:
+            return []
+        return self._estrategia_listagem.ordenar(pacientes)

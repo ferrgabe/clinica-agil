@@ -7,7 +7,7 @@ def menu_pacientes():
     while True:
         print("\n=== Menu Pacientes (MVC Pacientes) ===")
         print("1 - Cadastrar paciente")
-        print("2 - Listar pacientes")
+        print("2 - Listar pacientes (escolher ordenação)")
         print("3 - Sair")
 
         opcao = input("Escolha uma opção: ")
@@ -15,7 +15,7 @@ def menu_pacientes():
         if opcao == "1":
             _view_cadastrar_paciente(controller)
         elif opcao == "2":
-            _view_listar_pacientes(controller)
+            _view_listar_pacientes_com_strategy(controller)
         elif opcao == "3":
             print("Saindo do módulo de pacientes...")
             break
@@ -45,14 +45,36 @@ def _view_cadastrar_paciente(controller: PacienteController):
     print(mensagem)
 
 
-def _view_listar_pacientes(controller: PacienteController):
-    print("\nPacientes cadastrados:")
-    pacientes = controller.listar_pacientes()
-    if not pacientes:
+def _view_ler_opcao_ordenacao() -> str:
+    print("\nComo deseja ordenar os pacientes?")
+    print("a - Por nome")
+    print("b - Por data de cadastro")
+    opcao = input("Escolha uma opção (a/b): ").strip().lower()
+    return opcao
+
+
+def _view_listar_pacientes_com_strategy(controller: PacienteController):
+    print("\n=== Listagem de Pacientes ===")
+
+    # Se não tem ninguém cadastrado, já avisa
+    pacientes_existentes = controller.listar_pacientes()
+    if not pacientes_existentes:
         print("Nenhum paciente cadastrado.")
         return
 
-    for p in pacientes:
+    opcao = _view_ler_opcao_ordenacao()
+
+    if opcao == "a":
+        controller.definir_estrategia_listagem_por_nome()
+    elif opcao == "b":
+        controller.definir_estrategia_listagem_por_data_cadastro()
+    else:
+        print("Opção de ordenação inválida. Voltando ao menu.")
+        return
+
+    pacientes_ordenados = controller.listar_pacientes_ordenados()
+
+    for p in pacientes_ordenados:
         print(
             f"ID: {p.idusuario}, Login: {p.login}, Nome: {p.nome_completo}, "
             f"Email: {p.email}, Telefone: {p.telefone}, "
